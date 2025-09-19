@@ -358,7 +358,6 @@
     }
 
     function adjustHrefPath(path, page) {
-      // Remove leading './' or '/' from the path
       path = path.replace(/^\.\//, "").replace(/^\//, "");
 
       if (page === undefined || page != 2) {
