@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Drive Mad 200 Levels - Fullscreen</title>
+
+  <!-- Analytics (kept) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YLTCV2MMS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-0YLTCV2MMS");
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    /* Game container fills screen */
+    #gameContainer {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    #gameContainer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: transparent;
+    }
+
+    /* Fullscreen button */
+    #fullscreenButton {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      z-index: 9999;
+      padding: 8px 14px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    #fullscreenButton:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="gameContainer"></div>
+  <button id="fullscreenButton">Fullscreen</button>
+
+  <script>
+    const gameContainer = document.getElementById("gameContainer");
+
+    function embedGame() {
+      const iframe = document.createElement("iframe");
+      iframe.src = "./game/index.html";
+      iframe.allowFullscreen = true;
+      gameContainer.appendChild(iframe);
+    }
+
+    function goFullscreen() {
+      if (gameContainer.requestFullscreen) {
+        gameContainer.requestFullscreen();
+      } else if (gameContainer.webkitRequestFullscreen) {
+        gameContainer.webkitRequestFullscreen();
+      } else if (gameContainer.msRequestFullscreen) {
+        gameContainer.msRequestFullscreen();
+      }
+    }
+
+    document.getElementById("fullscreenButton").onclick = goFullscreen;
+
+    // Load the game
+    embedGame();
+
+    // Optional: auto fullscreen shortly after load
+    setTimeout(goFullscreen, 800);
+  </script>
+
+</body>
+</html>
